@@ -6,6 +6,7 @@ import random
 
 # ======================== 2020/08/09 - APIBENDRINIMAS - STRUKTURA ====================
 
+
 """
 Dekoratorius funkcijos iskvietejas ir argumentu laikiklis
 Kad nereiketu sekti kiek argumentu naudojame tada naudojame *args
