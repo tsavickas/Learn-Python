@@ -1,0 +1,213 @@
+Datan Structures
+=============================================================================
+-----------------------------------------------------------------------------
+List | []
+-----------------------------------------------------------------------------
+# Accessing items in list
+list = ["a", "b", "b", 1, 25, -7, [0, 1], [2, 3]]
+lsit[0] = "A" /Accessing items in list. Replacing lower "a" to captial "A"
+print(list[0:3]) /Accessing items in list - slicing
+print(list[2:5])/ Accessing items in list - slicing
+print(list[::2]) /accessing every second element in the list
+print(list[::-1]) /with negative 1 we are getting all items of the original list in reverse order
+
+# List unpacking
+numbers = [1, 2, 3]
+first, second, third = numbers
+numbers = [1, 2, 3, 4, 4, 4, 4, 4, 4, 5, 8]
+first, second, *other = numbers
+print(first)
+print(*other)
+
+# Loop over lists
+letters = ["a", "b", "c"]
+for letter in letters:
+    print(letter)
+
+for index, letter in enumerate(letters): /Getting indexes, Enumerate function returns Tuple in each iterration
+    print(index, letter)
+
+# Adding items
+letters.append("d")
+letters.insert(0, "-")
+
+# Removing items
+letters.pop(0)
+letters.remove("b")
+del letters[0:3] /we can remove range of items from list
+letters.clear() /Clear method remove all the items in the list
+
+# Finding items
+letters.count("b") /counting how many items in the list
+if "b" in letters: /avoiding error when the item not in the list
+    print(letters.index("b"))
+
+# Sorting list
+numbers = [3, 51, 40, 5, 100]
+numbers.sort()
+sorted(numbers) /builtin function, does not change original list
+
+# Sorting list with tuples
+item = [
+    (Product1", 10)
+    (Product2", 9)
+    (Product3", 12)
+]
+
+Write a function (First option)
+def sort_item(item):
+    return item[1]
+item.sort(key=sort_item)
+print(items)
+
+# Lambda function / one line anonymous function
+Write a function (second option)
+Syntax: list.sort(key=lambda parameters:expression)
+item.sort(key=lambda item: item[1])
+print(items)
+
+# Getting price from the list of tuples with Map and Lambda functions
+prices = list(map(lambda item: item[1], items)) /Map funtion takes Lambda function and applies for each iterrable
+print(prices)
+
+# Filter function. Filter list with Lambda
+filtered = list(filter(lambda item: item[1] >= 10, items))
+print(filtered)
+
+# List comprehensions
+[expression for item in items]
+
+Map+Lambda vs Comprehension
+prices = list(map(lambda item: item[1], items))
+prices = [item[1] for item in items]
+
+filtered = list(filter(lambda item: item[1] >= 10, items))
+filtered = [item for item in items if item[1] >= 10]
+
+# Zip function
+list1 = [1, 2, 3]
+list2 = [10, 20, 30]
+Combine both lists with Zip function
+zip(list1, list2) / Zip object is iterrable
+print(list(zip("abc", list1, list2)) /we can add and combine addition objects
+
+# Stacks
+LIFO - last in first out, example: web browser
+
+browsing_session = []
+browsing_session.append() /add element on top of the stack
+browsing_session.pop() /remove element from top of the stack
+if not browsing_session:
+    browsing_session[-1]
+
+# Queues
+If we have long list (for example with 1000 items) it will be not efficient to move all items when the first item is removed.
+In this case we need to use DEQUE
+
+from collections import deque 
+queue = deque([])
+queue.append(1)
+queue.append(2)
+queue.append(3)
+queue.popleft()
+print(queue)
+if not queue:
+    print("empty")
+
+-----------------------------------------------------------------------------
+Tuples - Read only list. It is immutible | ()
+-----------------------------------------------------------------------------
+tuple_example1 = (1, 2, 3)
+tuple_example2 = 1, 2, 3
+tuple_example3 = 1,
+
+#Converting list to tuple
+point = tuple([1, 2, 3])
+
+print(tuple_example1[0:2]) /creates a new tuple (1, 2)
+x, y, z = point /unzip tuple
+if 10 in point:
+    print("exists")
+
+# Swapping variables
+x = 10
+y = 20
+x, y = y, x /we are defining a tuple on the right and unpacking it on the left
+
+-----------------------------------------------------------------------------
+Arrays - takes less memory if dealing with a large sequence of numbers (10K+)
+-----------------------------------------------------------------------------
+from array import array
+numbers = array("i", [1, 2, 3]) /typecode "i"
+numbers[0]
+
+-----------------------------------------------------------------------------
+Set - anordered collection with no duplicates | {}
+-----------------------------------------------------------------------------
+numbers = [1, 1, 2, 3, 4]
+first = set(numbers)
+second = {1, 5}
+second.add(5)
+second.remove(5)
+len(second)
+
+print(first | second) /Union of two sets for values in both sets
+print(first & second) /Union of two sets for intersection of two sets
+print(first - second) /Union of two sets for difference in two sets
+print(first ^ second) /Union of two sets for simetric difference
+
+Set object does not support indexing
+
+-----------------------------------------------------------------------------
+Dictionaries - collection of key values pairs | {} | example - phonebook
+-----------------------------------------------------------------------------
+point = {"x": 1, "y": 2}
+point = dict(x=1, y=2)
+point["x"] /accessing value of key "x"
+point.get("a", 0) /looking for key "a" and if not found return 0
+del point["x"] /deleting key/value pair "x"
+
+# Loop through dictionary
+for key in point:
+    print(key, point[key])
+
+for key, value in point.items():
+    print(key, value)
+
+#Dictionary comprehension
+[expression for item in items]
+
+Comprehension expression for list:
+values = []
+for x in range(5)
+    values.append(x * 2)
+=>
+values = [x * 2 for x in range(5)]
+
+Comprehension expression for dictionary:
+values = {x: x * 2 for x in range(5)}
+
+
+'''Generators - for really big range of data set and memory efficiency'''
+
+Generator objects are itterables. Generators do not store a value in memory but generate a new value in each iteration
+But we can calculate result (sum, len etc.), only access to values
+
+Getting size of the object:
+from sys import getsizeof
+values = (x * 2 for x in range(1000))
+print("gen:", getsizeof(values)) 
+values = [x * 2 for x in range(1000)]
+print("list:", getsizeof(values)) 
+
+'''Unpacking operator'''
+numbers = [1, 2, 3]
+print(*numbers)
+
+values = [*range(5), *"Hello"]
+print(values)
+
+first = {"x": 1}
+second = {"x": 10, "y": 2}
+combined = {**first, **second, "z": 1}
+print(combined)
