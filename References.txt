@@ -297,3 +297,147 @@ if xfactor == None:
 print(f"First code: {timeit(code1, number=10000)}")
 print(f"Second code: {timeit(code2, number=10000)}")
 
+
+CLASSES
+=============================================================================
+
+
+class Point:
+
+# Defaining class level atribute
+    default_color = red # Are shared between all instances in the class
+
+    def __init__(self, x, y:) # Constructor, Magic method
+        self.x = x # Instance atribute 1
+        self.t = y # Instance atribute 2
+
+    def __str__(self): # Magic method
+        return f"({self.x}, {self.y}")
+
+    @classmethod # Decorator, it is the way to extend a behaviour of method or function 
+    def zero(cls) # Class method
+        return cls(0, 0)
+
+    def draw(self):
+        print(f"Point ({self.x}, {self.y})")
+
+point = Point.zero()
+#point = Point(1, 2)
+point.draw()
+print(point)
+
+
+Comparing objects with magic methods in the class
+-------------------------------------------------
+
+Magic method to compare if objects eual:
+def __eq__(self, other):
+    return self.x == other.x
+
+Magic method to compare if objects is greater than:
+def __gt__(self, other):
+    return self.x > other.x
+
+
+All Magic Methods in Python:
+https://rszalski.github.io/magicmethods/
+
+
+PROPERTY
+-------------------------------------------------
+class Product:
+    def __init__(self, price):
+        self.price = price
+
+    # property is an object that sit in front of an attribute and allows us to get or set value os an attribute
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, value):
+        if value < 0:
+            raise ValueError("Price cannot be negative.")
+        self.__price = value
+
+
+product = Product(-10)
+print(product.price)
+
+
+INHERITANCE
+-------------------------------------------------
+Inheritance is a mechanism that allows us to define a common behaviour or common functions in one class
+and then inherit them in other classes.
+
+In the best practice of using inheritance maximum 2 levels is recomended
+
+#Every class what we have directly or indirectly derives from the OBJECT class. Even though we didn't add it here: class Animal(object) (=class Animal).
+#Object class is a base class for all clases in Python.
+class Animal:
+    def __init__(self):
+        print("Animal Constuctor")
+        self.age = 1
+
+    def eat(self):
+        print("eat")
+
+# Animal: Parent, Base class
+# Mamaml: Child, Sub class
+# Mammal class inherits all the features of Animal class
+class Mammal(Animal):
+    def __init__(self):
+        super().__init__() #it allows to call contructor from the parent class otherwise situation like print(m.age) 
+                            will cause an error as Parent class will not be called due to Mammal Constructor create for weight
+        print("Mammal Constuctor")
+        self.weight = 2
+
+    def walk(self):
+        print("walk")
+
+class Fish(Animal):
+    def swim(self):
+        print("swim")
+
+m = Mammal()
+m.eat
+
+
+Extending Built-in Types
+-------------------------------------------------
+We can also use inheritance with built-in types
+
+In this case Text class will inherit all the features of Python strings but we also can add additional features to it.
+class Text(str):
+    def duplicate(self):
+        return self + self
+text = Text("Pythin")
+print(text.duplicate())
+
+
+Data Classes
+-------------------------------------------------
+If dealing with classes what have no behaviour, no methods, only have data
+we can use named tuple instead. 
+
+So, instead of this code...
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+print(p1 == p2)
+
+...we use named tuple...
+from collection import namedtuple
+
+namedtuple("Point", ["x", "y"])
+p1 = Point(x=1, y=2)
+p2 = Point(x=1, y=2)
+print(p1 == p2)
+
+Important. These named tuples are immutable so we cannot modify them,
+instead we have to create a new point object with other values.
