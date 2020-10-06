@@ -443,3 +443,53 @@ print(p1 == p2)
 
 Important. These named tuples are immutable so we cannot modify them,
 instead we have to create a new point object with other values.
+
+
+=============================================================================
+Pip, Virtual Enviroments, Pipenv
+=============================================================================
+
+
+pip (Windows) / pip3 (Mac, Linux) = for (un)installing/upgrading/listing currently installed packages
+
+pip3 install <package>
+pip3 uninstall <package>
+pip3 install --upgrade pip
+pip3 list
+
+Creating individually isolated environment:
+<project directory> $python3 -m venv <name>
+exmaple: $python3 -m venv env
+
+Activating created individually isolated environment:
+Windows: <project directory> $env\bin\activate.bat
+Mac, Linux: <project directory> $source env/bin/activate
+
+Activating created individually isolated environment:
+<project directory> $deactivate
+
+Pipenv is the tool that combines pip and virtual ennviroments into a single toolchain,
+so we don't have to use pip or virtual environment separately
+
+Installing pipenv:
+<project directory> pip3 install pipenv
+
+Activating:
+<project directory> pipenv shell
+
+Deactivating:
+<project directory> exit
+
+Installing packages:
+<project directory> pipenv install <package>
+
+Path to virtual enviroment directory:
+pipenv --venv
+
+Command to see all installed dependancies:
+pipenv graph
+
+
+Publishing Packages
+-----------------------------------------------------------------------------
+pip3 install setuptools wheel twine
