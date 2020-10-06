@@ -8,3 +8,5 @@ movies.json
 db.sqlite3
 template.html
 env/
+Pipfile
+Pipfile.lock
