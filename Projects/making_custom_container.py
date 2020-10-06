@@ -1,10 +1,10 @@
 # With this class we are able to track of the number of various tags on a blog/article
-# For exmample we wnat to know how many articles do we have with tag "Python"
+# For example we want to know how many articles do we have with tag "Python"
 
 class TagCloud:
-    def __init__(self):     # define a constructor and initialize tags atributes
+    def __init__(self):     # define a constructor and initialize tags attributes
         # use dictionary because its allows quickly get us a number of a given tag
-        # tag atribute we make private atribute with two underlines (__tag). That way we hide atribute from outside so we cannot easily access it
+        # tag attribute we make private attribute with two underlines (__tag). That way we hide attribute from outside so we cannot easily access it
         self.__tags = {}
 
     def add(self, tag):
@@ -43,6 +43,6 @@ cloud["python"]
 # set a number for a given tag with magic method __setitem__
 cloud["python"] = 10
 
-# iterrating over the container with magic method __iter__
+# iterating over the container with magic method __iter__
 for tag in cloud:
     print(tag)
