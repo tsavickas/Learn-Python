@@ -8,6 +8,10 @@ lessons/
 movies.json
 db.sqlite3
 template.html
-env/
+env*
+.vscode
 Pipfile
 Pipfile.lock
+project-pyyelp
+project-pyselenium
+project-pycrawler
