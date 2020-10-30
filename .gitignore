@@ -1,17 +1,5 @@
-Projects/app.py
-Projects/.vscode
-Projects/sales.py
-Projects/__pycache__
-Projects/tadaspdf
-ecommerce/
-lessons/
-movies.json
-db.sqlite3
-template.html
-env*
-.vscode
-Pipfile
-Pipfile.lock
-project-pyyelp
-project-pyselenium
-project-pycrawler
+.gitignore
+Code with Mosh/
+Lessons/
+Oxylabs Tasks/
+certificate-of-completion-for-python-programming-for-beginners.pdf
